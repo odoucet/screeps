@@ -27,7 +27,9 @@ Room.prototype.getBasicCostMatrixCallback = function() {
 
     for (const creep of Object.keys(this.memory.position.creep)) {
       const pos = this.memory.position.creep[creep];
-      costMatrix.set(pos.x, pos.y, config.layout.creepAvoid);
+      if (pos) {
+        costMatrix.set(pos.x, pos.y, config.layout.creepAvoid);
+      }
     }
 
     const closeExits = function(x, y) {

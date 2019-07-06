@@ -66,12 +66,15 @@ brain.main.visualizeRooms = function() {
 brain.main.updateSkippedRoomsLog = function() {
   Memory.skippedRoomsLog = Memory.skippedRoomsLog || {};
   if (_.size(Memory.skippedRooms) > 0) {
-    console.log(`${Game.time} cpu.getUsed: ${_.round(Game.cpu.getUsed())} ticklimit: ${Game.cpu.tickLimit} Bucket: ${Game.cpu.bucket} skippedRooms ${Memory.skippedRooms}`);
+    console.log(`${Game.time} _.size(Memory.skippedRooms) rooms Skipped because of CPU usage. cpu.getUsed: ${_.round(Game.cpu.getUsed())} ticklimit: ${Game.cpu.tickLimit} Bucket: ${Game.cpu.bucket} skippedRooms ${Memory.skippedRooms}`);
     Memory.skippedRoomsLog[Game.time] = Memory.skippedRooms;
   }
   if (Game.time % 100 === 0) {
     const roomsSkipped = _.sum(_.map(Memory.skippedRoomsLog, _.size));
-    console.log(`${Game.time} skipped rooms ${roomsSkipped} in ${_.size(Memory.skippedRoomsLog)} ticks of 100 ticks`);
+    if (roomsSkipped > 0) {
+      console.log(`${Game.time} skipped rooms ${roomsSkipped} in ${_.size(Memory.skippedRoomsLog)} ticks of 100 ticks`);
+    }
+    
     const lowExecution = _.size(Memory.skippedRoomsLog) / 100 < config.main.lowExecution;
     if (config.debug.cpu && lowExecution) {
       Game.notify(`${Game.time} skipped rooms ${roomsSkipped} in ${_.size(Memory.skippedRoomsLog)} ticks of 100 ticks`, 120);

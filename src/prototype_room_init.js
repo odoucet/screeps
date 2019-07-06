@@ -232,7 +232,7 @@ Room.prototype.setTowerFillerIterate = function(roomName, offsetDirection) {
 
     const pos = posPathObject.getAdjacentPosition(directionNext + offsetDirection);
 
-    if (!pos.checkTowerFillerPos()) {
+    if (pos === null || !pos.checkTowerFillerPos()) {
       continue;
     }
 

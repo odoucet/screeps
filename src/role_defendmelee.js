@@ -27,8 +27,10 @@ roles.defendmelee.action = function(creep) {
   if (config.visualizer.enabled && config.visualizer.showPathSearches) {
     visualizer.showSearch(search);
   }
-  const direction = creep.pos.getDirectionTo(search.path[0]);
-  creep.moveCreep(search.path[0], RoomPosition.oppositeDirection(direction));
-  creep.move(direction);
+  if (search.path[0]) {
+    const direction = creep.pos.getDirectionTo(search.path[0]);
+    creep.moveCreep(search.path[0], RoomPosition.oppositeDirection(direction));
+    creep.move(direction);
+  }
   creep.attack(hostile);
 };

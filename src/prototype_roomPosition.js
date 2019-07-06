@@ -75,7 +75,15 @@ RoomPosition.prototype.getAdjacentPosition = function(direction) {
     direction = RoomPosition.fixDirection(direction);
   }
 
-  return new RoomPosition(this.x + adjacentPos[direction][0], this.y + adjacentPos[direction][1], this.roomName);
+  if (this.x + adjacentPos[direction][0] >= 0 && this.x + adjacentPos[direction][0] < 50 &&
+      this.y + adjacentPos[direction][1] >= 0 && this.y + adjacentPos[direction][1] < 50) {
+    return new RoomPosition(this.x + adjacentPos[direction][0], this.y + adjacentPos[direction][1], this.roomName);
+  } else {
+    return null;
+  }
+
+
+  
 };
 
 RoomPosition.prototype.getAllAdjacentPositions = function* () {
@@ -134,7 +142,7 @@ RoomPosition.prototype.inPositions = function(opts = {}) {
       // console.log('inPositions:', this.roomName, creepId);
       continue;
     }
-    if (this.isEqualTo(pos.x, pos.y)) {
+    if (this.x == pos.x && this.y == pos.y) {
       if (opts.debug) {
         this.log(`equals to creep ${creepId}`);
       }
@@ -148,7 +156,7 @@ RoomPosition.prototype.inPositions = function(opts = {}) {
       if (!pos) {
         continue;
       }
-      if (this.isEqualTo(pos.x, pos.y)) {
+      if (this.x == pos.x && this.y == pos.y) {
         if (opts.debug) {
           this.log(`equals to structure ${structureId}`);
         }

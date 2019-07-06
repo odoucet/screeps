@@ -33,14 +33,14 @@ global.config = {
   },
 
   quests: {
-    enabled: true,
+    enabled: false,
     endTime: 10000,
     signControllerPercentage: 0.1,
   },
 
   info: {
     signController: true,
-    signText: 'Fully automated TooAngel bot: http://tooangel.github.io/screeps/',
+    signText: 'Fully automated bot based on TooAngel (but heavy modif from me !)',
     resignInterval: 500,
   },
 
@@ -57,10 +57,10 @@ global.config = {
 
   // use username `tooangels` and password `tooSecretPassword` at https://screepspl.us/grafana
   stats: {
-    screepsPlusEnabled: false,
+    screepsPlusEnabled: true,
     screepsPlusToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvb2FuZ2VscyIsImlhdCI6MTQ4MzU2MTU3OSwiYXVkIjoic2NyZWVwc3BsLnVzIiwiaXNzIjoic2NyZWVwc3BsLnVzIn0.NhobT7Jg8bOAg-MYqrYsgeMgXEVXGVYG9s3G9Qpfm-o',
     enabled: true,
-    summary: false,
+    summary: true,
   },
 
   debug: {
@@ -111,7 +111,7 @@ global.config = {
     ttlPerRoomForScout: 1500,
     numberOfNextroomers: 10,
     maxRooms: 8,
-    cpuPerRoom: 13, // Necessary CPU per room, prevent claiming new rooms
+    cpuPerRoom: 9, // Necessary CPU per room, prevent claiming new rooms
     revive: true,
     // creep max run distance for next room
     // if terminal should send energy rooms should be close
