@@ -37,7 +37,7 @@ Creep.prototype.moveMy = function(target) {
   const moveResponse = this.move(this.pos.getDirectionTo(target));
   if (moveResponse !== OK && moveResponse !== ERR_NO_BODYPART) {
     this.log(`pos: ${this.pos} target ${target}`);
-    throw new Error(`moveToMy this.move(${this.pos.getDirectionTo(target)}); => ${moveResponse}`);
+    throw new Error(`moveToMy this.move(${this.pos.getDirectionTo(target)}) (target=${target}); => ${moveResponse}`);
   }
   return moveResponse === OK;
 };
@@ -97,6 +97,9 @@ Creep.prototype.moveRandomWithin = function(goal, dist = 3, goal2 = false) {
   for (let i = 0; i < 8; i++) {
     direction = RoomPosition.changeDirection(startDirection, i);
     const pos = this.pos.getAdjacentPosition(direction);
+    if (!pos) {
+      continue;
+    }
     if (pos.isBorder(-1)) {
       continue;
     }

@@ -119,7 +119,11 @@ Creep.prototype.prepareRoutingMemory = function() {
   const route = this.getRoute();
   const routePos = this.getRoutePos(route);
   const path = this.room.getPath(route, routePos, 'pathStart', this.memory.routing.targetId);
-  this.getPathPos(path);
+
+  // path can be undefined (bugreport)
+  if (path) {
+    this.getPathPos(path);
+  }
   return path;
 };
 

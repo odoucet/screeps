@@ -72,9 +72,9 @@ Room.prototype.buildPath = function(route, routePos, from, to) {
     end = this.getMyExitTo(to);
   } else {
     end = this.getCreepPositionForId(to);
-    if (!end) {
-      return;
-    }
+  }
+  if (!end) {
+    return;
   }
   const search = PathFinder.search(
     start, {
